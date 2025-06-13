@@ -10,13 +10,13 @@ import {
   Image,
 } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
-import {Global} from '../Common/Global';
-import HOCIcons from '../HOC/HOCIcons';
-import {normalize} from '../CommonStyle/componentStyle';
+import {Global} from 'facescan/src/Global';
+import HOCIcons from 'facescan/src/HOCIcons';
+import {normalize} from 'facescan/src/componentStyle';
 import ProgressCircle from 'react-native-progress-circle';
 import {PermissionsAndroid, Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {notifyMessage} from '../CommonStyle/ComponentFunctions';
+import {notifyMessage} from 'facescan/src/ComponentFunctions';
 
 const IMAGE_URL = `http://api.amalaplus.org:9090/file/filedownload/photo/`;
 const FACE_RECOGNITION_API = `http://api.amalaplus.org:9090/python/recognize`;

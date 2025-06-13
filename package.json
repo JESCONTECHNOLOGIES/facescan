@@ -1,0 +1,15 @@
+{
+  "name": "facescan",
+  "version": "1.0.0",
+  "main": "src/CFaceScan.js",
+  "description": "Face scan component for React Native",
+  "keywords": ["react-native", "face-scan", "geolocation"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/cfacescan.git"
+  },
+  "peerDependencies": {
+    "react": ">=17",
+    "react-native": ">=0.68"
+  }
+}

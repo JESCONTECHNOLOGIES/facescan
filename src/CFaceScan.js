@@ -34,8 +34,6 @@ function CFaceScan(props) {
     employeeData: null,
     modalVisible: false,
   });
-
-  const hrenemp = JSON.stringify(props.response);
   const timerRef = useRef(null);
   const qrScanCallbackRef = useRef(null);
 
@@ -75,7 +73,7 @@ function CFaceScan(props) {
   }, [startCountdown]);
 
   useEffect(() => {
-    if (hrenemp != null && hrenemp != undefined && hrenemp != '') {
+    if (props.response != null && props.response != undefined && props.response != '') {
       updateState({modalVisible: true});
       startProcess();
     }
@@ -97,11 +95,11 @@ function CFaceScan(props) {
 
     try {
       const base64Image = await convertImageToBase64(selfie.uri);
-      console.log('REQUESTDATA----------', JSON.stringify(hrenemp));
+      console.log('REQUESTDATA----------', JSON.stringify(props.response));
       const response = await fetch(FACE_RECOGNITION_API, {
         method: 'POST',
         headers: {
-          'hrenemp': hrenemp,
+          'hrenemp': props.response,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({image: base64Image}),

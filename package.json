@@ -6,7 +6,7 @@
   "keywords": ["react-native", "face-scan", "geolocation"],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-username/cfacescan.git"
+    "url": "git+https://github.com/JESCONTECHNOLOGIES/facescan.git"
   },
   "peerDependencies": {
     "react": ">=17",

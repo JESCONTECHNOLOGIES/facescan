@@ -179,17 +179,18 @@ const FaceScan = ({hrenemp, status}) => {
 
     try {
       const base64Image = await convertImageToBase64(selfie.uri);
-      const response = await fetchWithTimeout(FACE_RECOGNITION_API, {
+      const data =  {
         method: 'POST',
         headers: {
-          'hrenemp': hrenemp,
+          'hrenemp': JSON.stringify(hrenemp),
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({image: base64Image}),
-      }, 15000); // 15 seconds timeout
-
+      }
+      console.log('DATA-----------------',JSON.stringify(data))
+      const response = await fetchWithTimeout(FACE_RECOGNITION_API,data, 15000); // 15 seconds timeout
       const result = await response.json();
-      
+      console.log('RESPONSE-----------------',JSON.stringify(result))
       if (response.ok && result.data?.employeename) {
         notifyMessage('Face authenticated');
         updateState({employeeData: result.data});

@@ -94,11 +94,10 @@ function CFaceScan(props) {
   // Upload face scan to the server
   const uploadFaceScan = async selfie => {
     updateState({isLoading: true});
-
+    console.log('UPLOADFACESCAN----------', JSON.stringify(props.response.data?.userdata?.hrenemp));
     if(props.response){
       try {
       const base64Image = await convertImageToBase64(selfie.uri);
-      console.log('REQUESTDATA----------', JSON.stringify(props.response.data?.userdata?.hrenemp));
       const response = await fetch(FACE_RECOGNITION_API, {
         method: 'POST',
         headers: {

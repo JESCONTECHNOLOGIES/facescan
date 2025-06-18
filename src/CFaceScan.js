@@ -74,12 +74,12 @@ function CFaceScan(props) {
   }, [startCountdown]);
 
   useEffect(() => {
-    console.log("START",JSON.stringify(props.response))
-    if (props.response) {
+    console.log("START",JSON.stringify(props.data))
+    if (props.data) {
       updateState({modalVisible: true});
       startProcess();
     }
-  }, [props.response]);
+  }, [props.data]);
 
   // Handle face scan
   const handleStartFaceScan = useCallback(() => {
@@ -94,14 +94,14 @@ function CFaceScan(props) {
   // Upload face scan to the server
   const uploadFaceScan = async selfie => {
     updateState({isLoading: true});
-    console.log('UPLOADFACESCAN----------', JSON.stringify(props.response.data?.userdata?.hrenemp));
-    if(props.response){
+    console.log('UPLOADFACESCAN----------', JSON.stringify(props.data.data?.userdata?.hrenemp));
+    if(props.data){
       try {
       const base64Image = await convertImageToBase64(selfie.uri);
       const response = await fetch(FACE_RECOGNITION_API, {
         method: 'POST',
         headers: {
-          'hrenemp': props.response.data.userdata.hrenemp,
+          'hrenemp': props.data.data.userdata.hrenemp,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({image: base64Image}),
@@ -204,7 +204,7 @@ function CFaceScan(props) {
 
           if (distance <= 100) {
             notifyMessage('✅ QR scanned successfully — location verified!');
-            props.login(props.response);
+            props.callback(props.data);
           } else {
             notifyMessage('❌ QR scanned, but location mismatch!');
           }
@@ -228,7 +228,7 @@ function CFaceScan(props) {
       setTimeout(startQRCodeScan, 2000);
     }
   },
-  [startQRCodeScan, props.login]
+  [startQRCodeScan, props.callback]
 );
 
 
@@ -301,7 +301,7 @@ function CFaceScan(props) {
     };
   }, [state.modalVisible]);
 
-  if (!props.response) return null;
+  if (!props.data) return null;
 
   const {
     isLoading,
